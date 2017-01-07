@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private GoogleMap mMap;
     boolean mapReady = false;
-    private final String TAG = "UJJWALTESTAPP";
+    private final String TAG = "MainActivity";
     private double latitude, longitude ;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+
 
 //        mGoogleApiClient = new GoogleApiClient.Builder(this)
 //                .addApi(LocationServices.API)
@@ -190,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onMapReady(GoogleMap map) {
+        Log.i(TAG,"map ready;");
         mapReady = true;
         mMap=map;
 
@@ -253,8 +257,11 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.nav_about) {
 
         } else if (id == R.id.nav_statistics) {
-            statisticsfragment fragment = new statisticsfragment();
-            fragmentTransaction.add(R.id.fragment_container, fragment);
+            frag = statisticsfragment.newInstance();
+
+            // statisticsfragment fragment = new statisticsfragment();
+            int fragment_container = R.id.fragment_container;
+            fragmentTransaction.replace(fragment_container, frag);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_settings) {
 
